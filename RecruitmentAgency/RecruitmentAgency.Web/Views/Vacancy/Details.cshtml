@@ -1,0 +1,38 @@
+﻿@model RecruitmentAgency.Web.Models.VacancyModel
+
+
+    <div class="container">
+        <div class="form-group">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.Experience)
+            @Html.DisplayFor(model => model.Experience)
+        </div>
+        <div class="form-group">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(model => model.Requierements)
+            @Html.DisplayFor(model => model.Requierements)
+        </div>
+        <div class="form-group">
+            <div style="display:inline-block">
+                @Html.DisplayNameFor(model => model.SalaryFrom)
+            </div>
+            <div style="display:inline-block">
+                @Html.DisplayFor(model => model.SalaryFrom)
+            </div>
+            <div style="display:inline-block">
+                @Html.DisplayNameFor(model => model.SalaryTo)
+            </div>
+            <div style="display:inline-block">
+                @Html.DisplayFor(model => model.SalaryTo)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Назад", "Index", "Vacancy", null, new { @class = "btn btn-default" })
+        </div>
+    </div>  
+  
+ 

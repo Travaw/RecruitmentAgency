@@ -1,0 +1,13 @@
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.Api.deps.json
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.Api.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.Api.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\obj\Debug\netstandard2.0\RecruitmentAgency.Api.csprojAssemblyReference.cache
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\obj\Debug\netstandard2.0\RecruitmentAgency.Api.AssemblyInfoInputs.cache
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\obj\Debug\netstandard2.0\RecruitmentAgency.Api.AssemblyInfo.cs
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\obj\Debug\netstandard2.0\RecruitmentAgency.Api.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\obj\Debug\netstandard2.0\RecruitmentAgency.Api.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.Core.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.Core.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\bin\Debug\netstandard2.0\RecruitmentAgency.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.Api\obj\Debug\netstandard2.0\RecruitmentAgency.Api.csproj.CopyComplete

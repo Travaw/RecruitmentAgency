@@ -1,0 +1,10 @@
+﻿@model RecruitmentAgency.Web.Models.CandidateModel
+
+
+    <div>
+        @Html.Partial("Candidate", Model)
+    </div>
+    <div>
+        @Html.ActionLink("Назад", "Candidates", "Candidate",null, new { @class="btn btn-default"})
+    </div>
+

@@ -6,13 +6,20 @@ using System.Web.Mvc;
 
 namespace RecruitmentAgency.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+
+            return RedirectToRoute(new { controller = "Account", action = "Login" });
         }
 
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

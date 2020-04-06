@@ -1,0 +1,35 @@
+﻿@using RecruitmentAgency.Web.Models;
+
+@model  ICollection<CandidateModel>
+<h2>Кандидаты</h2>
+<div class="table">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Partial("Search", new CandidateSearchModel())
+        </div>
+        <div class="col-md-8" id="candidates">
+
+            
+            @if (Model.Count == 0)
+            {
+                <div style="text-align:center">
+                    Кандидаты не найдены
+                </div>
+            }
+            else
+            {
+                <div int="candList">
+                    @foreach (var vac in Model)
+                    {
+                        @Html.Partial("Row", vac)
+                        <hr />
+                    }
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,13 @@
+d:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.NHibernate.deps.json
+d:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.NHibernate.dll
+d:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\obj\Debug\netstandard2.0\RecruitmentAgency.NHibernate.csprojAssemblyReference.cache
+d:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\obj\Debug\netstandard2.0\RecruitmentAgency.NHibernate.AssemblyInfoInputs.cache
+d:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\obj\Debug\netstandard2.0\RecruitmentAgency.NHibernate.AssemblyInfo.cs
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.NHibernate.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.Core.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.Core.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\bin\Debug\netstandard2.0\RecruitmentAgency.pdb
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\obj\Debug\netstandard2.0\RecruitmentAgency.NHibernate.csproj.CopyComplete
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\obj\Debug\netstandard2.0\RecruitmentAgency.NHibernate.dll
+D:\Work\Новая папка\IT-Univer\RecruitmentAgency\RecruitmentAgency\RecruitmentAgency.NHibernate\obj\Debug\netstandard2.0\RecruitmentAgency.NHibernate.pdb

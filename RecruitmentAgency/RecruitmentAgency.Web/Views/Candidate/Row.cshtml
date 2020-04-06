@@ -1,0 +1,24 @@
+﻿@model RecruitmentAgency.Web.Models.CandidateModel
+
+
+<div class="row">
+    <div class="col-md-10">
+            <h5 style="float:left"><a href="Candidate/Details?id=@Model.Id">@Model.Secondname  @Model.Firstname  @Model.Patronimic</a></h5>
+            
+       
+    </div>
+    <div class="col-md-2">
+        @using (Html.BeginForm("Index", "Vacancy", FormMethod.Post))
+        {
+            @Html.Hidden("Experience", Model.Experience)
+            @Html.Hidden("ProfessionalField", Model.ProfessionalField)
+            @Html.Hidden("Requierments", Model.Skills)
+            @Html.Hidden("sortString", "-")
+            <input type="submit" class="btn btn-default" style="float:right" value="Подобрать вакансии" />
+        }
+
+    </div>
+    
+</div>
+
+</div>

@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
+
+using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NHibernate.Mapping.ByCode;
+using System.Reflection;
 
 namespace RecruitmentAgency.Web
 {
@@ -16,6 +21,11 @@ namespace RecruitmentAgency.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            NinjectModule registrations = new NinjectRegistrations();
+            var kernel = new StandardKernel(registrations);
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            ModelValidatorProviders.Providers.Clear();
+            //ModelValidatorProviders.Providers.Add(new ModelValidatorProvider());
         }
     }
 }

@@ -1,0 +1,89 @@
+﻿@model RecruitmentAgency.Web.Models.VacancySearchModel
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@{
+        List<object> sort = new List<object>();
+        sort.Add(new { SortString = "-" });
+        sort.Add(new { SortString = "Должность" });
+        sort.Add(new { SortString = "Сфера деятельности" });
+        sort.Add(new { SortString = "Описание" });
+        sort.Add(new { SortString = "Требования" });
+        sort.Add(new { SortString = "З/п" });
+        SelectList sortStrings = new SelectList(sort, "SortString", "SortString");
+
+}
+
+@using (Ajax.BeginForm("Index", "Vacancy", new AjaxOptions { UpdateTargetId = "vacancies" }, new { @class = "form-horizontal"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <input type="submit" value="Найти" class="btn btn-default" style="float:left" />
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Сортировать по: ", htmlAttributes: new { @class = "control-label" })
+
+            @Html.DropDownList("sortString", sortStrings,  new { @class = "form-control" } )
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+        </div>
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProfessionalField, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.ProfessionalField, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProfessionalField, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Requierements, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Requierements, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Requierements, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+
+        </div>
+
+
+    </div>
+}
+

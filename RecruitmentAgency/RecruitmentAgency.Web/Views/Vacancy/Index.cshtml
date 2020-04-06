@@ -1,0 +1,40 @@
+﻿@using  RecruitmentAgency.Web.Models;
+
+@model  ICollection<VacancyModel>
+<h2>Вакансии</h2>
+    <div class="table">
+            <div class="row">
+                <div class="col-md-4">                   
+                        @Html.Partial("Search", new VacancySearchModel())                    
+                </div>
+                <div class="col-md-8" id="vacancies">
+
+                    @if (User.IsInRole("employee"))
+                    {
+                    <div class="row">
+                        @Html.ActionLink("Добавить", "Create", "Vacancy", new { @class = "btn btn-default", @style = "float:right" })
+                       
+                    </div>
+                    }
+                    @if (Model.Count == 0)
+                    {
+                        <div style="text-align:center">
+                            Ваканси не найдены
+                        </div>
+                    }
+                    else
+                    {
+                        <div int="vacList">
+                            @foreach (var vac in Model)
+                            {
+                                @Html.Partial("Row", vac)
+                            <hr />
+                            }
+                        </div>
+                        
+                    }
+
+                </div>
+            </div>
+
+        </div>

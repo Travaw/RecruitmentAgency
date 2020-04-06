@@ -1,0 +1,14 @@
+﻿@using RecruitmentAgency.Web.Models;
+
+@model CandidateModel
+
+<hr/>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Редактировать", "Edit", "Candidate", new { id=Model.Id}, new { @class="btn btn-defaut"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Partial("Candidate", Model)
+    </div>

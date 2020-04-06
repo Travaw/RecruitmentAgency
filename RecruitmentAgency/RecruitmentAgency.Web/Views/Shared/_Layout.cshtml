@@ -21,22 +21,65 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Вакансии", "Index", "Vacancy")</li>
+                        <li>@Html.ActionLink("Кандидаты", "Index", "Candidate")</li>
+                        <li>@Html.ActionLink("Пользователи", "Index", "User")</li>
+
+                    }
+                    @if (User.IsInRole("hr"))
+                    {
+                        <li>@Html.ActionLink("Кандидаты", "Index", "Candidate")</li>
+                        <li>@Html.ActionLink("Вакансии", "Index", "Vacancy")</li>
+                    }
+                    @if (User.IsInRole("jobseeker"))
+                    {
+                        <li>@Html.ActionLink("Моё резюме", "Resume", "Candidate")</li>
+                        <li>@Html.ActionLink("Вакансии", "Index", "Vacancy")</li>
+                    }
+                    @if (User.IsInRole("employee"))
+                    {
+                        <li>@Html.ActionLink("Моя компания", "Index", "Employee")</li>
+                        <li>@Html.ActionLink("Мои вакансии", "Index", "Vacancy")</li>
+                        <li>@Html.ActionLink("Кандидаты", "Index", "Candidate")</li>
+                    }
+
+                    <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        var switchActive = function (id) {
+        $.ajax({
+            url: '@Url.Action("SwitchActive", "Vacancy")',
+            type: 'POST',
+            cache: false,
+            async: false,
+            data: { 'id': id }
+        });
+        }
+
+        block = function (id, invoker) {
+    $.ajax({
+        url: '@Url.Action("Block", "User")',
+        dataType: "json",
+        method: "POST",
+        data: { "id": id },
+        success: function () {
+            invoker.closest('tr').remove();
+        }
+    });
+}
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

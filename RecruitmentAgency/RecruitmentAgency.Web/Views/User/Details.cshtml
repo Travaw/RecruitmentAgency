@@ -1,0 +1,11 @@
+﻿@model RecruitmentAgency.Web.Models.UserModel
+
+    <div>
+        @Html.DisplayFor(model => model.Login)
+        @Html.DisplayFor(model => model.Email)
+        <a class="btn btn-default" style="float: right;" href="@Url.Action("Edit", "User", new { id = Model.Id })">
+            Редактировать
+        </a>
+
+    </div>
+

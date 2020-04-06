@@ -1,0 +1,10 @@
+﻿@using RecruitmentAgency.Web.Models
+@model ICollection<UserModel>
+
+@foreach(var user in Model)
+{
+    <div class="row">
+        @Html.Partial("Details", user)
+    </div>
+    <hr/>
+}

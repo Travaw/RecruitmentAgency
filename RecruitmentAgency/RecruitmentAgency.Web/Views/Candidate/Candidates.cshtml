@@ -1,0 +1,19 @@
+﻿@model ICollection<RecruitmentAgency.Web.Models.CandidateModel>
+
+<div class="form-horizontal" id="vacancies">
+    @foreach(var candidate in Model)
+    {
+    <div class="row">
+        <div class="col-md-10">
+            <h5>
+                @Ajax.ActionLink(@candidate.Secondname+" "+@candidate.Firstname +" "+@candidate.Patronimic,"Details", "Candidate",  new { id = candidate.Id },new AjaxOptions { UpdateTargetId = "vacancies" })
+             </h5>
+            @candidate.ProfessionalField
+        </div>
+        <div class="col-md-2">
+        </div>
+        
+    </div>
+    }
+</div>
+
