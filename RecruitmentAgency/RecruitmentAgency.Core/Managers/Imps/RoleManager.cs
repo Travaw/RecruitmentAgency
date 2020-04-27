@@ -8,6 +8,8 @@ namespace RecruitmentAgency.Core.Managers.Imps
     /// </summary>
     public class RoleManager : ManagerBase<IRoleRepository, Role, int>, IRoleManager
     {
+        private const string entityName = "Role";
+
         public RoleManager(IRoleRepository roleRepository) : base(roleRepository)
         {
 
@@ -20,7 +22,8 @@ namespace RecruitmentAgency.Core.Managers.Imps
         /// <returns></returns>
         public Role Get(string roleName)
         {
-            return repository.Get(u => u.Name == roleName);
+            var role = repository.Get(u => u.Name == roleName);
+            return role;
         }
     }
 }

@@ -8,6 +8,8 @@ namespace RecruitmentAgency.Core.Managers.Imps
     /// </summary>
     public class EmployeeManager:ManagerBase<IEmployeeRepository, Employee, int>,IEmployeeManager
     {
+        private const string entityName = "Employee";
+
         public EmployeeManager(IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
 
@@ -16,7 +18,8 @@ namespace RecruitmentAgency.Core.Managers.Imps
        /// <inheritdoc/>
         public Employee GetByUser(string login)
         {
-            return repository.Get(c => c.User.Login == login);
+            var employee = repository.Get(c => c.User.Login == login);
+            return employee;
         }
     }
 }

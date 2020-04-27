@@ -7,7 +7,8 @@ namespace RecruitmentAgency.Core.Managers.Imps
     /// Менеджер сущности <see cref="User"/>
     /// </summary>
     public class UserManager: ManagerBase<IUserRepository, User, int>, IUserManager
-    {       
+    {
+        private const string entityName = "User";
 
         public UserManager(IUserRepository userRepository):base(userRepository)
         {
@@ -17,13 +18,15 @@ namespace RecruitmentAgency.Core.Managers.Imps
         /// <inheritdoc/>
         public User Get(string login)
         {
-            return repository.Get(u => u.Login == login);
+            var user = repository.Get(u => u.Login == login);
+            return user;
         }
 
         /// <inheritdoc/>
         public User Get(string login, string password)
         {
-            return repository.Get(u=>u.Login==login&&u.Password==password);
+            var user = repository.Get(u=>u.Login==login&&u.Password==password);
+            return user;
         }
 
        

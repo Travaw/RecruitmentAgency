@@ -7,6 +7,7 @@ using RecruitmentAgency.Api.Services;
 using RecruitmentAgency.Api.Services.DTOs;
 using RecruitmentAgency.Web.Strings;
 using RecruitmentAgency.Web.Models;
+using System;
 
 namespace RecruitmentAgency.Web.Controllers
 {
@@ -14,7 +15,8 @@ namespace RecruitmentAgency.Web.Controllers
     /// Контроллер для работы с вакансиями
     /// </summary>
     public class VacancyController : Controller
-    {               
+    {
+        private const string entityNotFound = "Вакансия не найдена";
 
         private readonly IVacancyAppService vacancyAppService;
 
@@ -50,13 +52,18 @@ namespace RecruitmentAgency.Web.Controllers
                 var emp = employeeAppService.GetByUser(userName);
                 if (emp == null)
                 {
-                    return RedirectToAction("Index", "Employee");
+                    return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.Employee);
                 }
                 vacancies = vacancyAppService.GetAllForUser(userName);
             }
             else
+            if(User.IsInRole(RoleNames.Admin))
             {
                 vacancies = vacancyAppService.GetAll();
+            }
+            else
+            {
+                vacancies = vacancyAppService.GetAllActive();
             }
             var vacanciesModel = mapper.Map<ICollection<VacancyModel>>(vacancies);
             return View(vacanciesModel);
@@ -74,13 +81,21 @@ namespace RecruitmentAgency.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("Search", vacancySearchModel);
+                return View();
             }
             var dto = mapper.Map<SearchVacancyDTO>(vacancySearchModel);
+            if(User.IsInRole(RoleNames.Jobseeker)|| User.IsInRole(RoleNames.Hr))
+            {
+                dto.IsActive = true;
+            }
+            else
+            {
+                dto.IsActive = false;
+            }
             ICollection<VacancyDTO> vacancies;
             switch (sortString)
             {
-               case SortStrings.DontSort : 
+               case SortStrings.DontSort: 
                     vacancies = vacancyAppService.Search(dto);
                     break;
                 case SortStrings.SortByVacancyName:
@@ -100,9 +115,8 @@ namespace RecruitmentAgency.Web.Controllers
                     break;
                 default: vacancies = vacancyAppService.Search(dto);
                     break;
-            }
-           
-            return View(mapper.Map<ICollection<VacancyModel>>(vacancies));
+            }           
+            return PartialView(ViewStrings.SearchResultsView, mapper.Map<ICollection<VacancyModel>>(vacancies));
         }
 
         /// <summary>
@@ -129,10 +143,9 @@ namespace RecruitmentAgency.Web.Controllers
                 return View(vacancyCreateModel);
             }
             var dto = mapper.Map<CreateVacancyDTO>(vacancyCreateModel);
-            //dto.UserId = userAppService.Get(User.Identity.Name).Id;
             dto.UserName = User.Identity.Name;
             vacancyAppService.Create(dto);
-            return RedirectToAction("Index", "Vacancy");      
+            return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.Vacancy);      
         }
 
         /// <summary>
@@ -143,6 +156,10 @@ namespace RecruitmentAgency.Web.Controllers
         public ActionResult Details(int id)
         {
             var vacancy = vacancyAppService.Get(id);
+            if (vacancy == null)
+            {
+                return View(ViewStrings.ErrorView);
+            }
             return  View(mapper.Map<VacancyModel>(vacancy));
         }
 
@@ -155,9 +172,18 @@ namespace RecruitmentAgency.Web.Controllers
         [HttpPost]
         [Authorize(Roles = RoleNames.Employee)]
         public ActionResult SetActive(int id, bool status)
-        {            
-            vacancyAppService.SetStatus(id, status);
+        {
+            try
+            {
+                vacancyAppService.SetStatus(id, status);
+                
+            }
+            catch(Exception ex)
+            {
+                
+            }
             return new JsonResult();
+
         }
 
         /// <summary>
@@ -169,13 +195,17 @@ namespace RecruitmentAgency.Web.Controllers
         public ActionResult GetCandidates(int id)
         {
             var vacancy = vacancyAppService.Get(id);
+            if (vacancy == null)
+            {
+                return View(ViewStrings.ErrorView);
+            }
             CandidateSearchModel candidateSModel = new CandidateSearchModel()
             {
                 Experience = vacancy.Experience,
                 ProfessionalField = vacancy.ProfessionalField,
                 Skills = vacancy.Requierements
             };
-            return RedirectToAction("Index", "Candidate", new { candidateSearchModel = candidateSModel });
+            return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.Candidate, new { candidateSearchModel = candidateSModel });
         }
     }
 }

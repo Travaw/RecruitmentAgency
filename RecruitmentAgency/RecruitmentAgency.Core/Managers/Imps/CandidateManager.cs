@@ -12,7 +12,10 @@ namespace RecruitmentAgency.Core.Managers.Imps
     /// </summary>
     public class CandidateManager: ManagerBase<ICandidateRepository, Candidate, int>, ICandidateManager
     {
+        private const string entityName = "Candidate";
+
         private readonly IUserRepository userRepository;
+
         public CandidateManager(IUserRepository userRepository, ICandidateRepository candidateRepository) : base(candidateRepository)
         {
             this.userRepository = userRepository;
@@ -27,13 +30,15 @@ namespace RecruitmentAgency.Core.Managers.Imps
         /// <inheritdoc/>
         public Candidate GetByUser(int id)
         {
-            return repository.Get(c => c.User.Id == id);
+            var candidate = repository.Get(c => c.User.Id == id);
+            return candidate;
         }
 
         /// <inheritdoc/>
         public Candidate GetByUser(string login)
         {
-            return repository.Get(c => c.User.Login == login);
+            var candidate = repository.Get(c => c.User.Login == login);
+            return candidate;
         }
 
         /// <inheritdoc/>

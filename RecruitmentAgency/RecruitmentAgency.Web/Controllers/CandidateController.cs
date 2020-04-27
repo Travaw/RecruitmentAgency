@@ -16,7 +16,9 @@ namespace RecruitmentAgency.Web.Controllers
     /// </summary>
     [Authorize]
     public class CandidateController : Controller
-    {        
+    {
+        private const string entityNotFound = "Кандидат не найден";
+
         private readonly ICandidateAppService candidateAppService;
 
         private readonly IUserAppService userAppService;
@@ -60,7 +62,7 @@ namespace RecruitmentAgency.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("Search", candidateSearchModel); 
+                return View();
             }
             var dto = mapper.Map<SearchCandidateDTO>(candidateSearchModel);
             ICollection<CandidateDTO> candidates;
@@ -84,7 +86,7 @@ namespace RecruitmentAgency.Web.Controllers
                     break;
             }
 
-            return View(mapper.Map<ICollection<CandidateModel>>(candidates));
+            return PartialView(ViewStrings.SearchResultsView, mapper.Map<ICollection<CandidateModel>>(candidates));
         }
 
         /// <summary>
@@ -112,13 +114,12 @@ namespace RecruitmentAgency.Web.Controllers
                 return View(candidateCreateModel);
             }
             var dto = mapper.Map<CreateCandidateDTO>(candidateCreateModel);
-            //dto.UserId = userAppService.Get(User.Identity.Name).Id;
             int fileLength = candidateCreateModel.Photo.ContentLength;
             dto.Photo = new byte[fileLength];
             candidateCreateModel.Photo.InputStream.Read(dto.Photo, 0, fileLength);
             dto.UserName = User.Identity.Name;
             candidateAppService.Create(dto);            
-            return RedirectToAction("Resume", "Candidate");
+            return RedirectToAction(ControllerStrings.ResumeMethod, ControllerStrings.Candidate);
         }
 
         /// <summary>
@@ -132,7 +133,7 @@ namespace RecruitmentAgency.Web.Controllers
             var candidate = candidateAppService.GetByUser(User.Identity.Name);
             if (candidate == null)
             {
-                return View("Create");
+                return View(ViewStrings.CreateView);
             }
             var model = mapper.Map<CandidateModel>(candidate);
             return View(model);
@@ -148,6 +149,10 @@ namespace RecruitmentAgency.Web.Controllers
         public ActionResult Details(int id)
         {
             var candidate = candidateAppService.Get(id);
+            if(candidate == null)
+            {
+                return View(ViewStrings.ErrorView);
+            }
             var model = mapper.Map<CandidateModel>(candidate);
             return View(model);
         }
@@ -162,6 +167,10 @@ namespace RecruitmentAgency.Web.Controllers
         public ActionResult Edit(int id)
         {
             var candidate = candidateAppService.Get(id);
+            if (candidate == null)
+            { 
+                return View(ViewStrings.ErrorView);
+            }
             var model = mapper.Map<CandidateEditModel>(candidate);
             return View(model);
         }
@@ -191,9 +200,8 @@ namespace RecruitmentAgency.Web.Controllers
             {
                 dto.Photo = candidateEditModel.OldPhoto;
             }
-            //dto.UserId = userAppService.Get(User.Identity.Name).Id;
             var entity = candidateAppService.Update(dto);
-            return View("Resume", mapper.Map<CandidateModel>(entity));
+            return View(ViewStrings.ResumeView, mapper.Map<CandidateModel>(entity));
         }
 
         

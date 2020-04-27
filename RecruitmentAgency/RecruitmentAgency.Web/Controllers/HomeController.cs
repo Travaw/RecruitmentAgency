@@ -23,7 +23,7 @@ namespace RecruitmentAgency.Web.Controllers
                 return View();
             }
 
-            return RedirectToRoute(new { controller = "Account", action = "Login" });
+            return RedirectToRoute(new { controller = ControllerStrings.Account, action = ControllerStrings.LoginMethod });
         }
         
     }

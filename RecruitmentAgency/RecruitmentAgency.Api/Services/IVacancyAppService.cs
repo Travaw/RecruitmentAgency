@@ -24,6 +24,13 @@ namespace RecruitmentAgency.Api.Services
         ICollection<VacancyDTO> GetAllForUser(string userName);
 
         /// <summary>
+        /// Получить все открытые вакансии 
+        /// </summary>
+        /// <param name="userName">Логин</param>
+        /// <returns></returns>
+        ICollection<VacancyDTO> GetAllActive();
+
+        /// <summary>
         /// Установить статус вакансии (открыта/закрыта)
         /// </summary>
         /// <param name="id">Идентификатор</param>

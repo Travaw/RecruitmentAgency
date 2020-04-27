@@ -34,12 +34,12 @@ namespace RecruitmentAgency.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var candidate = employeeAppService.GetByUser(User.Identity.Name);
-            if (candidate == null)
+            var employee = employeeAppService.GetByUser(User.Identity.Name);
+            if (employee == null)
             {
-                return View("Create");
+                return View(ViewStrings.CreateView);
             }
-            var model = mapper.Map<EmployeeModel>(candidate);
+            var model = mapper.Map<EmployeeModel>(employee);
             return View(model);
         }
 
@@ -57,10 +57,9 @@ namespace RecruitmentAgency.Web.Controllers
                 return View(employeeCreateModel);
             }
             var dto = mapper.Map<CreateEmployeeDTO>(employeeCreateModel);
-            dto.UserName = User.Identity.Name;
-            //dto.UserId = userAppService.Get(User.Identity.Name).Id;            
+            dto.UserName = User.Identity.Name;         
             employeeAppService.Create(dto);
-            return RedirectToAction("Index", "Employee");
+            return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.Employee);
         }
 
 

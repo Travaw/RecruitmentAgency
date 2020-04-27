@@ -31,13 +31,15 @@ namespace RecruitmentAgency.Core.Managers.Imps
         /// <inheritdoc/>
         public virtual TEntity Get(TPK id)
         {
-            return repository.Get(id);
+            var entity = repository.Get(id);
+            return entity;
         }
 
         /// <inheritdoc/>
         public virtual TEntity Get(Func<TEntity, bool> predicate)
         {
-            return repository.Get(predicate);
+            var entity = repository.Get(predicate);
+            return entity;
         }
 
         /// <inheritdoc/>

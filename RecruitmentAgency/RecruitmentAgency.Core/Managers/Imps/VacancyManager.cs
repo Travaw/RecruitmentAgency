@@ -12,6 +12,9 @@ namespace RecruitmentAgency.Core.Managers.Imps
     /// </summary>
     public class VacancyManager: ManagerBase<IVacancyRepository, Vacancy, int>, IVacancyManager
     {
+
+        private const string entityName = "Vacancy";
+
         public VacancyManager(IVacancyRepository vacancyRepository) : base(vacancyRepository)
         {
 
@@ -30,9 +33,9 @@ namespace RecruitmentAgency.Core.Managers.Imps
         }
 
         /// <inheritdoc/>
-        public ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary)
+        public ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary, bool isActive)
         {
-            return repository.Search(name, experience, professionalField, description, requirements, salary).ToList();
+            return repository.Search(name, experience, professionalField, description, requirements, salary, isActive).ToList();
         }
 
         /// <inheritdoc/>
@@ -45,6 +48,10 @@ namespace RecruitmentAgency.Core.Managers.Imps
         public void SetStatus(int id, bool status)
         {
             var vacancy = repository.Get(id);
+            if (vacancy == null)
+            {
+                throw new EntityNotFoundException(entityName);
+            }
             vacancy.IsActive = status;
             repository.Update(vacancy);
         }

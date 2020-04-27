@@ -60,5 +60,14 @@ namespace RecruitmentAgency.Api.Services.DTOs
             get;
             set;
         }
+
+        /// <summary>
+        /// Статус
+        /// </summary>
+        public bool IsActive
+        {
+            get;
+            set;
+        }
     }
 }

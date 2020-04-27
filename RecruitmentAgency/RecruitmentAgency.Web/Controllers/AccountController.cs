@@ -15,6 +15,10 @@ namespace RecruitmentAgency.Web.Controllers
     /// </summary>
     public class AccountController : Controller
     {
+        private const string userExist = "Пользователь с таким логином уже существует";
+
+        private const string incorrectLoginPassword = "Неверные логин и/или пароль";
+
         private readonly IUserAppService userService;
 
         private readonly IRoleAppService roleService;
@@ -58,11 +62,11 @@ namespace RecruitmentAgency.Web.Controllers
             if (user != null)
             {
                 FormsAuthentication.SetAuthCookie(loginModel.Login, true);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.Home);
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Неверные логин и/или пароль");
+                ModelState.AddModelError(string.Empty, incorrectLoginPassword);
                 return View(loginModel);
             }
             
@@ -94,13 +98,13 @@ namespace RecruitmentAgency.Web.Controllers
             var user = userService.Get(registrationModel.Login);
             if (user != null)
             {
-                ModelState.AddModelError(string.Empty, "Пользователь с таким логином уже существует");
+                ModelState.AddModelError(string.Empty, userExist);
                 registrationModel.Roles = GetRolesList();
                 return View(registrationModel);
             }
             userService.Create(dto); 
             FormsAuthentication.SetAuthCookie(registrationModel.Login, true);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.Home);
         }
 
         /// <summary>
@@ -110,7 +114,7 @@ namespace RecruitmentAgency.Web.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction(ControllerStrings.LoginMethod, ControllerStrings.Account);
         }
 
         /// <summary>

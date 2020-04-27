@@ -188,8 +188,10 @@
     <Compile Include="Models\VacancySearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\UserRoleProvider.cs" />
+    <Compile Include="Strings\ControllerStrings.cs" />
     <Compile Include="Strings\RoleNames.cs" />
     <Compile Include="Strings\SortStrings.cs" />
+    <Compile Include="Strings\ViewStrings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -251,6 +253,8 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Shared\ForReplace.cshtml" />
+    <Content Include="Views\Candidate\SearchResults.cshtml" />
+    <Content Include="Views\Vacancy\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

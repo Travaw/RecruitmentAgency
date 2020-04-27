@@ -13,6 +13,8 @@ namespace RecruitmentAgency.Web.Controllers
     /// </summary>
     public class UserController : Controller
     {
+        private const string userNotFound = "Пользователь не найден";
+
         private readonly IUserAppService userAppService;
 
         private readonly IMapper mapper;
@@ -47,7 +49,12 @@ namespace RecruitmentAgency.Web.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            return View();
+            var user = userAppService.Get(id);
+            if (user == null)
+            {
+                return View(ViewStrings.ErrorView);
+            }
+            return View(mapper.Map<UserEditModel>(user));
         }
 
         /// <summary>
@@ -65,7 +72,7 @@ namespace RecruitmentAgency.Web.Controllers
             }
             var user = mapper.Map<UpdateUserDTO>(userEditModel);
             userAppService.Update(user);
-            return RedirectToAction("Index", "User");
+            return RedirectToAction(ControllerStrings.IndexMethod, ControllerStrings.User);
         }
     }
 }

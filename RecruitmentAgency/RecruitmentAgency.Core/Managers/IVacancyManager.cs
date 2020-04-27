@@ -35,7 +35,7 @@ namespace RecruitmentAgency.Core.Managers
         /// </summary>
         /// <param name="search">Параметры поиска</param>
         /// <returns></returns>
-        ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary);
+        ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary, bool isActive);
 
         /// <summary>
         /// Установика статуса вакансии (открыта/закрыта)

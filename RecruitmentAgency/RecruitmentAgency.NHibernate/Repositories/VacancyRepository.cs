@@ -20,9 +20,13 @@ namespace RecruitmentAgency.NHibernate.Repositories
         }
 
         /// <inheritdoc/>
-        public ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary)
+        public ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary, bool isActive)
         {
             var request = GetAll();
+            if (isActive)
+            {
+                request = request.Where(v => v.IsActive == true);
+            }
             if(name!=null && name!=" ")
             {
                 request=request.Where(v=>v.Name==name);

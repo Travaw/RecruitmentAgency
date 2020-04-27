@@ -75,15 +75,8 @@ namespace RecruitmentAgency.Api.Services.Imps
         /// <inheritdoc/>
         public ICollection<VacancyDTO> Search(SearchVacancyDTO search)
         {
-            /*Expression<Func<Vacancy, bool>> searchFunc = RequestHelper.CreateVacancyLambda(search.Name, search.Experience, search.ProfessionalField, search.Description,search.Requierements, search.Salary);
-            if (searchFunc == null)
-            {
-                return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.GetAll());
-            }
-            else
-            {*/
-            return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.Search(search.Name, search.Experience, search.ProfessionalField, search.Description, search.Requierements, search.Salary));///vacancyManager.Search(searchFunc.Compile()));
-            /// }
+            return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.Search(search.Name, search.Experience, search.ProfessionalField, search.Description, search.Requierements, search.Salary, search.IsActive));///vacancyManager.Search(searchFunc.Compile()));
+          
         }
 
         /// <inheritdoc/>

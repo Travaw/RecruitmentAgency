@@ -44,7 +44,7 @@ namespace RecruitmentAgency.Web
             
             CreateMap<VacancyDTO, VacancyModel>();
 
-            CreateMap<VacancySearchModel, SearchVacancyDTO>();
+            CreateMap<VacancySearchModel, SearchVacancyDTO>().ForMember(dest => dest.IsActive, opt => opt.Ignore());
 
             CreateMap<CandidateSearchModel, SearchCandidateDTO>();
             

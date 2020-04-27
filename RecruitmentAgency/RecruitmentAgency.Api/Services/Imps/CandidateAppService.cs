@@ -77,15 +77,8 @@ namespace RecruitmentAgency.Api.Services.Imps
         ///<inheritdoc/>
         public ICollection<CandidateDTO> Search(SearchCandidateDTO search)
         {
-            /*Expression<Func<Candidate, bool>> searchFunc = RequestHelper.CreateCandidateLambda(search.Experience, search.ProfessionalField, search.Skills);
-            if (searchFunc == null)
-            {
-                return mapper.Map<ICollection<CandidateDTO>>(candidateManager.GetAll());
-            }
-            else
-            */
             return mapper.Map<ICollection<CandidateDTO>>(candidateManager.Search(search.Experience, search.ProfessionalField, search.Skills));//searchFunc.Compile() );
-           // }
+           
         }
 
         ///<inheritdoc/>
