@@ -8,7 +8,7 @@
                 <div id="search" class="col-md-4">                   
                         @Html.Partial("Search", new VacancySearchModel())                    
                 </div>
-                <div class="col-md-8" id="vacancies">
+                <div class="col-md-8">
                     @if (User.IsInRole("employee"))
                     {
                     <div class="row">

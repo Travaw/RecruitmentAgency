@@ -75,7 +75,7 @@ namespace RecruitmentAgency.Api.Services.Imps
         /// <inheritdoc/>
         public ICollection<VacancyDTO> Search(SearchVacancyDTO search)
         {
-            return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.Search(search.Name, search.Experience, search.ProfessionalField, search.Description, search.Requierements, search.Salary, search.IsActive));///vacancyManager.Search(searchFunc.Compile()));
+            return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.Search(search.Name, search.Experience, search.ProfessionalField, search.Description, search.Requierements, search.Salary, search.IsActive, search.EmployeeId));///vacancyManager.Search(searchFunc.Compile()));
           
         }
 

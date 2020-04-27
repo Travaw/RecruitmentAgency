@@ -92,6 +92,10 @@ namespace RecruitmentAgency.Web.Controllers
             {
                 dto.IsActive = false;
             }
+            if (User.IsInRole(RoleNames.Employee))
+            {
+                dto.EmployeeId = employeeAppService.GetByUser(User.Identity.Name).Id;
+            }
             ICollection<VacancyDTO> vacancies;
             switch (sortString)
             {

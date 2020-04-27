@@ -69,5 +69,14 @@ namespace RecruitmentAgency.Api.Services.DTOs
             get;
             set;
         }
+
+        /// <summary>
+        /// Идентификатор работодателя
+        /// </summary>
+        public int? EmployeeId
+        {
+            get;
+            set;
+        }
     }
 }

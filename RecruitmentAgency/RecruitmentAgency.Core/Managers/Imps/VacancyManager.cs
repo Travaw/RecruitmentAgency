@@ -33,9 +33,9 @@ namespace RecruitmentAgency.Core.Managers.Imps
         }
 
         /// <inheritdoc/>
-        public ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary, bool isActive)
+        public ICollection<Vacancy> Search(string name, int? experience, string professionalField, string description, string requirements, int? salary, bool isActive, int? employeeId)
         {
-            return repository.Search(name, experience, professionalField, description, requirements, salary, isActive).ToList();
+            return repository.Search(name, experience, professionalField, description, requirements, salary, isActive, employeeId).ToList();
         }
 
         /// <inheritdoc/>
