@@ -8,9 +8,13 @@ using RecruitmentAgency.Core.Managers;
 
 namespace RecruitmentAgency.Api.Services.Imps
 {
+    /// <summary>
+    /// Серфис для работы с работодателями
+    /// </summary>
     public class EmployeeAppService : IEmployeeAppService
     {
         private readonly IEmployeeManager employeeManager;
+
         private readonly IUserManager userManager;
 
         private readonly IMapper mapper;
@@ -22,6 +26,7 @@ namespace RecruitmentAgency.Api.Services.Imps
             this.mapper = mapper;
         }
 
+        /// <inheritdoc/>
         public EmployeeDTO Create(CreateEmployeeDTO createEmployeeDTO)
         {
             var employee = mapper.Map<Employee>(createEmployeeDTO);
@@ -30,29 +35,35 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<EmployeeDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public EmployeeDTO Update(UpdateEmployeeDTO updateEmployeeDTO)
         {
             var employee = mapper.Map<Employee>(updateEmployeeDTO);
             var entity = employeeManager.Update(employee);
             return mapper.Map<EmployeeDTO>(entity);
-        }        
+        }
 
+        /// <inheritdoc/>
         public EmployeeDTO Get(int id)
         {            
             var entity = employeeManager.Get(id);
             return mapper.Map<EmployeeDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public ICollection<EmployeeDTO> GetAll()
         {
             return mapper.Map<ICollection<EmployeeDTO>>(employeeManager.GetAll());
         }
 
+        /// <inheritdoc/>
         public EmployeeDTO GetByUser(string login)
         {
             var entity = employeeManager.GetByUser(login);
             return mapper.Map<EmployeeDTO>(entity);
         }
+
+        /// <inheritdoc/>
         public void Delete(int id)
         {
             employeeManager.Delete(id);

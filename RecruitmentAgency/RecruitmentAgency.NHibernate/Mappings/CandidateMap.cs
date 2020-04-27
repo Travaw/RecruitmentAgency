@@ -1,17 +1,24 @@
 ﻿using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
+
 using RecruitmentAgency.Core.Entities;
 
 namespace RecruitmentAgency.NHibernate.Mappings
 {
+    /// <summary>
+    /// Описание структуры сущности <see cref="Candidate"/>
+    /// </summary>
     public class CandidateMap : ClassMapping<Candidate>
     {
+        /// <summary>
+        /// Инициализация экземпляра <see cref="CandidateMap"/>
+        /// </summary>
         public CandidateMap()
         {
             Id(property=>property.Id, mapper =>
              {
-                 mapper.Generator(Generators.Increment);
+                 mapper.Generator(Generators.Native);
                  mapper.Type(NHibernateUtil.Int32);
                  mapper.Column("Id");
              });
@@ -60,25 +67,11 @@ namespace RecruitmentAgency.NHibernate.Mappings
 
             ManyToOne(property => property.User, mapping =>
             {
-                mapping.Column("UserId");
+                mapping.Column(FKColumnNames.UserFK);
                 mapping.Cascade(Cascade.All);
             });
-            /*
-            OneToOne(property => property.User, mapping =>
-            {
-                mapping.Class(typeof(User));
-                mapping.Cascade(Cascade.Persist);
-                mapping.Constrained(true);
-                mapping.Lazy(LazyRelation.Proxy); // or .NoProxy, .NoLazy
-               // mapping.PropertyReference(typeof(User).GetPropertyOrFieldMatchingName("OtherSideProperty"));
-               // mapping.OptimisticLock(true);
-               // mapping.Formula("arbitrary SQL expression");
-               // mapping.Access(Accessor.Field);
-                mapping.ForeignKey("FK_Candidates_ToUsers");
-              //Column("ExecutorId");
-            });*/
 
-            Table("Candidates");
+            Table(Candidate.TableName);
         }
     }
 }

@@ -1,22 +1,37 @@
 ﻿using AutoMapper;
+using System.Web.Mvc;
+
 using RecruitmentAgency.Api.Services;
 using RecruitmentAgency.Api.Services.DTOs;
 using RecruitmentAgency.Web.Models;
-using System.Web.Mvc;
 
 namespace RecruitmentAgency.Web.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы с работодателями
+    /// </summary>
     public class EmployeeController : Controller
     {
         private readonly IEmployeeAppService employeeAppService;
 
         private readonly IMapper mapper;
+
+        /// <summary>
+        /// Инициализация экземпляра <see cref="EmployeeController"/>
+        /// </summary>
+        /// <param name="employeeAppService"></param>
+        /// <param name="mapper"></param>
         public EmployeeController(IEmployeeAppService employeeAppService, IMapper mapper)
         {
             this.employeeAppService = employeeAppService;
             this.mapper = mapper;
         }
-        // GET: Employee
+
+        /// <summary>
+        /// Получение сведений о компании пользователя
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         public ActionResult Index()
         {
             var candidate = employeeAppService.GetByUser(User.Identity.Name);
@@ -28,6 +43,12 @@ namespace RecruitmentAgency.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Создание компании
+        /// </summary>
+        /// <param name="employeeCreateModel">Данные компании</param>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public ActionResult Create(EmployeeCreateModel employeeCreateModel)
         {

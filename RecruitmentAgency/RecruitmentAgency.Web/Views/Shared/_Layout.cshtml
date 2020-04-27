@@ -52,19 +52,52 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/scripts/jquery.validate.min.js")
+    @Scripts.Render("~/scripts/jquery.validate.unobtrusive.min.js")
+    @Scripts.Render("~/Scripts/chosen.jquery.min.js")
     <script>
-        var switchActive = function (id) {
+        var setActive = function (id, status) {
         $.ajax({
-            url: '@Url.Action("SwitchActive", "Vacancy")',
+            url: '@Url.Action("SetActive", "Vacancy")',
             type: 'POST',
             cache: false,
             async: false,
-            data: { 'id': id }
+            data: { 'id': id, 'status': status  },
+            success: function () {
+
+            }
+        });
+        }
+
+        var SearchCandidates = function () {
+        $.ajax({
+            url: '@Url.Action("SetActive", "Vacancy")',
+            type: 'POST',
+            cache: false,
+            async: false,
+            data: { 'id': id, 'status': status  },
+            success: function () {
+
+            }
+        });
+        }
+
+        var SearchVacancies = function (id, status) {
+        $.ajax({
+            url: '@Url.Action("SetActive", "Vacancy")',
+            type: 'POST',
+            cache: false,
+            async: false,
+            data: { 'id': id, 'status': status  },
+            success: function () {
+
+            }
         });
         }
 

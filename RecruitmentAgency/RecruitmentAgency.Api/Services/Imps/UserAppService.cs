@@ -7,6 +7,9 @@ using RecruitmentAgency.Core.Managers;
 
 namespace RecruitmentAgency.Api.Services.Imps
 {
+    /// <summary>
+    /// Сервис для работы с учётными записями пользователей
+    /// </summary>
     public class UserAppService : IUserAppService
     {
         private readonly IUserManager userManager;
@@ -22,6 +25,7 @@ namespace RecruitmentAgency.Api.Services.Imps
             this.mapper = mapper;
         }
 
+        /// <inheritdoc/>
         public UserDTO Create(CreateUserDTO createUserDTO)
         {
             var role = roleManager.Get(createUserDTO.RoleId);
@@ -31,6 +35,7 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<UserDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public UserDTO Update(UpdateUserDTO updateUserDTO)
         {
             var user = userManager.Get(updateUserDTO.Id);
@@ -39,29 +44,34 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<UserDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public UserDTO Get(int id)
         {
             var entity = userManager.Get(id);
             return mapper.Map<UserDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public UserDTO Get(string login)
         {
             var entity = userManager.Get(login);
             return mapper.Map<UserDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public UserDTO Get(string login, string password)
         {
             var entity = userManager.Get(login, password);
             return mapper.Map<UserDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public ICollection<UserDTO> GetAll()
         {
             return mapper.Map<ICollection<UserDTO>>(userManager.GetAll());
         }
 
+        /// <inheritdoc/>
         public void Delete(int id)
         {
             userManager.Delete(id);

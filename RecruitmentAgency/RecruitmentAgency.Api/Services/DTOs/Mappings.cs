@@ -4,9 +4,14 @@ using System;
 
 namespace RecruitmentAgency.Api.Services.DTOs
 {
-
+    /// <summary>
+    /// Маппинг для DTO
+    /// </summary>
     public class Mappings : Profile
         {
+            /// <summary>
+            /// Маппинг
+            /// </summary>
             public Mappings()
             {
                 CreateMap<User, UserDTO>();//.ForMember(dest => dest.Role, opt => opt.MapFrom(u=>u.Role));

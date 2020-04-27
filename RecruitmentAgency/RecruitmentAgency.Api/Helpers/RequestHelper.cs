@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Linq.Expressions;
+
 using RecruitmentAgency.Core.Entities;
 
 namespace RecruitmentAgency.Api.Helpers
 {
+    /// <summary>
+    /// Генератор поисковых запросов
+    /// </summary>
     public class RequestHelper
     {
-        public static Expression<Func<Vacancy, bool>> CreateVacancyLambda(string name, int? experience, string professionalField, string description, string requierments, int? salary)
+        /// <summary>
+        /// Генерация запроса по вакансиям
+        /// </summary>
+        /// <param name="name">Название</param>
+        /// <param name="experience">Опыт работы</param>
+        /// <param name="professionalField">Сфера деятельности</param>
+        /// <param name="description">Описние</param>
+        /// <param name="requirements">Требовни</param>
+        /// <param name="salary">З/п</param>
+        /// <returns></returns>
+        public static Expression<Func<Vacancy, bool>> CreateVacancyLambda(string name, int? experience, string professionalField, string description, string requirements, int? salary)
         {
             var vacancy = Expression.Parameter(typeof(Vacancy), "s");
             List<Expression> equals = new List<Expression>();
@@ -23,7 +35,7 @@ namespace RecruitmentAgency.Api.Helpers
             {
                 var exp = Expression.PropertyOrField(vacancy, "Experience");
                 var e = Expression.Constant(experience);
-                equals.Add(Expression.LessThanOrEqual(exp, e));
+                equals.Add(Expression.Equal(exp, e));
             }
             if (professionalField != null && professionalField != "")
             {
@@ -39,24 +51,24 @@ namespace RecruitmentAgency.Api.Helpers
                 var toLower = Expression.Call(desc, methodInfo);
                 MethodCallExpression callExpr;
                 List<Expression> contains = new List<Expression>();
-                string[] keyWords = description.ToLower().Split(' ');
+                string[] keyWords = description.Trim(new Char[] { ',', '.', '!', '?' }).ToLower().Split(' ');
                 foreach (var keyWord in keyWords)
                 {
-                    kW = Expression.Constant(keyWord.Trim(new Char[] {  ',', '.' , '!', '?'}));
+                    kW = Expression.Constant(keyWord);
 
                     callExpr = Expression.Call(toLower, typeof(string).GetMethod("Contains"), new Expression[] { kW });
                     equals.Add(callExpr);
                 }
             }
-            if (requierments != null && requierments != "")
+            if (requirements != null && requirements != "")
             {
-                var req = Expression.PropertyOrField(vacancy, "Requierments");
+                var req = Expression.PropertyOrField(vacancy, "Requierements");
                 ConstantExpression kW;
                 System.Reflection.MethodInfo methodInfo = typeof(string).GetMethod("ToLower", new Type[] { });
                 var toLower = Expression.Call(req, methodInfo);
                 MethodCallExpression callExpr;
                 List<Expression> contains = new List<Expression>();
-                string[] keyWords = requierments.ToLower().Split(' ');
+                string[] keyWords = requirements.ToLower().Split(' ');
                 foreach (var keyWord in keyWords)
                 {
                     kW = Expression.Constant(keyWord.Trim(new Char[] { ',', '.', '!', '?' }));
@@ -108,6 +120,13 @@ namespace RecruitmentAgency.Api.Helpers
 
         }
 
+        /// <summary>
+        /// Генерация запроса по кандидатам
+        /// </summary>
+        /// <param name="experience">Опыт работы</param>
+        /// <param name="professionalField">Сфера деятельности</param>
+        /// <param name="skills">Навыки</param>
+        /// <returns></returns>
         public static Expression<Func<Candidate, bool>> CreateCandidateLambda(int? experience, string professionalField, string skills)
         {
             var candidate = Expression.Parameter(typeof(Candidate), "s");
@@ -116,7 +135,7 @@ namespace RecruitmentAgency.Api.Helpers
             {
                 var exp = Expression.PropertyOrField(candidate, "Experience");
                 var e = Expression.Constant(experience);
-                equals.Add(Expression.GreaterThanOrEqual(exp, e));
+                equals.Add(Expression.Equal(exp, e));
             }
             if (professionalField != null && professionalField != "")
             {

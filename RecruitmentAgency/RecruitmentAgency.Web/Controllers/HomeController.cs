@@ -6,9 +6,16 @@ using System.Web.Mvc;
 
 namespace RecruitmentAgency.Web.Controllers
 {
+    /// <summary>
+    /// Контроллер
+    /// </summary>
     [Authorize]
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Получить домашнюю страницу
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -18,20 +25,6 @@ namespace RecruitmentAgency.Web.Controllers
 
             return RedirectToRoute(new { controller = "Account", action = "Login" });
         }
-
         
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

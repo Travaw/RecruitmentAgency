@@ -17,7 +17,7 @@ namespace RecruitmentAgency.NHibernate.Mappings
         {
             Id(x => x.Id, x =>
             {
-                x.Generator(Generators.Increment);
+                x.Generator(Generators.Native);
                 x.Type(NHibernateUtil.Int32);
                 x.Column("Id");
             });
@@ -41,7 +41,7 @@ namespace RecruitmentAgency.NHibernate.Mappings
 
             ManyToOne(property => property.Role, mapping =>
             {
-                mapping.Column("RoleId");
+                mapping.Column(FKColumnNames.RoleFK);
                 mapping.Cascade(Cascade.All);
             });
 
@@ -55,7 +55,7 @@ namespace RecruitmentAgency.NHibernate.Mappings
                 mapping.Class(typeof(Employee));
             });
 
-            Table("Users");
+            Table(User.TableName);
         }
     }
 }

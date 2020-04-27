@@ -9,9 +9,8 @@ using AutoMapper;
 using RecruitmentAgency.Api;
 using RecruitmentAgency.Api.Services;
 using RecruitmentAgency.Api.Services.Imps;
-using System.Web.Security;
-using RecruitmentAgency.Web.Providers;
 using System.Web.ModelBinding;
+using System.Configuration;
 
 namespace RecruitmentAgency.Web
 {
@@ -38,7 +37,7 @@ namespace RecruitmentAgency.Web
             Bind<IVacancyAppService>().To<VacancyAppService>();
             Bind<IRoleAppService>().To<RolleAppService>();
 
-            var sessionFactory = NHibernateHelper.Config();
+            var sessionFactory = NHibernateHelper.Config(ConfigurationManager.ConnectionStrings["RecruitmentAgencyDb"].ConnectionString);
             Bind<ISessionFactory>().ToConstant(sessionFactory).InSingletonScope();//ToMethod(c => NHibernateHelper.Config()).InSingletonScope();
             Bind<ISession>().ToMethod(c => sessionFactory.OpenSession()).InThreadScope();
             //Bind<IValueResolver<SourceEntity, DestModel, bool>>().To<MyResolver>();

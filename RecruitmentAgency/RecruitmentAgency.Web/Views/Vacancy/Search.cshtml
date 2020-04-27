@@ -1,22 +1,24 @@
-﻿@model RecruitmentAgency.Web.Models.VacancySearchModel
+﻿@using RecruitmentAgency.Web.Strings;
+
+@model RecruitmentAgency.Web.Models.VacancySearchModel
 
 @{
     ViewBag.Title = "Search";
 }
 
 @{
-        List<object> sort = new List<object>();
-        sort.Add(new { SortString = "-" });
-        sort.Add(new { SortString = "Должность" });
-        sort.Add(new { SortString = "Сфера деятельности" });
-        sort.Add(new { SortString = "Описание" });
-        sort.Add(new { SortString = "Требования" });
-        sort.Add(new { SortString = "З/п" });
-        SelectList sortStrings = new SelectList(sort, "SortString", "SortString");
+    List<object> sort = new List<object>();
+    sort.Add(new { SortString = SortStrings.DontSort });
+    sort.Add(new { SortString = SortStrings.SortByVacancyName});
+    sort.Add(new { SortString = SortStrings.SortByProfessionlField});
+    sort.Add(new { SortString = SortStrings.SortByDescription});
+    sort.Add(new { SortString = SortStrings.SortByReqirements});
+    sort.Add(new { SortString = SortStrings.SortBySalary });
+    SelectList sortStrings = new SelectList(sort, "SortString", "SortString");
 
 }
 
-@using (Ajax.BeginForm("Index", "Vacancy", new AjaxOptions { UpdateTargetId = "vacancies" }, new { @class = "form-horizontal"}))
+@using (Ajax.BeginForm("Index", "Vacancy", new AjaxOptions { UpdateTargetId = "search"}, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
 
@@ -30,7 +32,7 @@
         <div class="form-group">
             @Html.Label("Сортировать по: ", htmlAttributes: new { @class = "control-label" })
 
-            @Html.DropDownList("sortString", sortStrings,  new { @class = "form-control" } )
+            @Html.DropDownList("sortString", sortStrings, new { @class = "form-control" })
 
         </div>
 
@@ -42,7 +44,7 @@
 
         </div>
 
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label" })
 

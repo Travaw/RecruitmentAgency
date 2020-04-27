@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// одель для изменния резюме
+    /// </summary>
     public class CandidateEditModel
     {
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
         [Required]
         public int Id
         {
@@ -15,6 +18,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Имя
+        /// </summary>
         [Display(Name = "Имя")]
         [Required]
         public string Firstname
@@ -23,6 +29,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Фамилия
+        /// </summary>
         [Display(Name = "Фамилия")]
         [Required]
         public string Secondname
@@ -31,6 +40,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Отчество
+        /// </summary>
         [Display(Name = "Отчество")]
         [Required]
         public string Patronimic
@@ -39,14 +51,21 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Опыт работы
+        /// </summary>
         [Display(Name = "Опыт работы (лет)")]
         [Required]
-        public int Experience //переделать на список мест работы
+        [Range(0, 80)]
+        public int Experience 
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Сфера деятельности
+        /// </summary>
         [Display(Name = "Сфера деятельности")]
         [Required]
         public string ProfessionalField
@@ -55,6 +74,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Навыки
+        /// </summary>
         [Display(Name = "Навыки")]
         [Required]
         public string Skills
@@ -62,12 +84,20 @@ namespace RecruitmentAgency.Web.Models
             get;
             set;
         }
+
+        /// <summary>
+        /// Старая фотография
+        /// </summary>
         [Required]
         public string OldPhoto
         {
             get;
             set;
         }
+
+        /// <summary>
+        /// Новая фотография
+        /// </summary>
         public HttpPostedFileBase NewPhoto
         {
             get;

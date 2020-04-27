@@ -3079,11 +3079,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.NHibernate\\RecruitmentAgency.NHibernate.csproj",
+      "projectUniqueName": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.NHibernate\\RecruitmentAgency.NHibernate.csproj",
       "projectName": "RecruitmentAgency.NHibernate",
-      "projectPath": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.NHibernate\\RecruitmentAgency.NHibernate.csproj",
+      "projectPath": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.NHibernate\\RecruitmentAgency.NHibernate.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.NHibernate\\obj\\",
+      "outputPath": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.NHibernate\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3099,8 +3099,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.Core\\RecruitmentAgency.Core.csproj": {
-              "projectPath": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.Core\\RecruitmentAgency.Core.csproj"
+            "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.Core\\RecruitmentAgency.Core.csproj": {
+              "projectPath": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\RecruitmentAgency.Core\\RecruitmentAgency.Core.csproj"
             }
           }
         }

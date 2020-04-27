@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// Модель для поиска вакансий
+    /// </summary>
     public class VacancySearchModel
     {
+        /// <summary>
+        /// Должность
+        /// </summary>
         [Display(Name="Должность")]
         public string Name
         {
@@ -15,6 +17,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Описание
+        /// </summary>
         [Display(Name = "Описание")]
         public string Description
         {
@@ -22,13 +27,20 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Опыт работы
+        /// </summary>
         [Display(Name = "Опыт работы")]
+        [Range(0,80)]
         public int? Experience
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Требования
+        /// </summary>
         [Display(Name = "Требования")]
         public string Requierements
         {
@@ -36,6 +48,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Сфера деятельности
+        /// </summary>
         [Display(Name = "Сфера деятельности")]
         public string ProfessionalField
         {
@@ -43,7 +58,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
-
+        /// <summary>
+        /// з/п
+        /// </summary>
         [Display(Name = "Зарплата")]
         public int? Salary
         {

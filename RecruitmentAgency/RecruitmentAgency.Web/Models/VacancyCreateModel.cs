@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// Модель для создания
+    /// </summary>
     public class VacancyCreateModel
     {
+        /// <summary>
+        /// Должность
+        /// </summary>
         [Display(Name="Должность")]
         public string Name
         {
@@ -15,6 +18,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Сфера деятельности
+        /// </summary>
         [Display(Name = "Сфера деятельности")]
         public string ProfessionalField
         {
@@ -22,13 +28,20 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Опыт работы
+        /// </summary>
         [Display(Name = "Опыт работы")]
+        [Range(0, 80)]
         public int Experience
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Описание
+        /// </summary>
         [Display(Name = "Описание")]
         public string Description
         {
@@ -36,6 +49,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Требования
+        /// </summary>
         [Display(Name = "Требования")]
         public string Requierements
         {
@@ -43,6 +59,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Срок действия
+        /// </summary>
         [Display(Name = "Срок действия")]
         public DateTime Period
         {
@@ -50,6 +69,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Минимльная з/п
+        /// </summary>
         [Display(Name = "З/п от")]
         public int SalaryFrom
         {
@@ -57,6 +79,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Максимльная зарплата
+        /// </summary>
         [Display(Name = "до")]
         public int SalaryTo
         {

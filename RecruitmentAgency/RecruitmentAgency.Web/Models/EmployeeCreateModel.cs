@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// Модель для создания работодателя
+    /// </summary>
     public class EmployeeCreateModel
     {
+        /// <summary>
+        /// Название компании
+        /// </summary>
         [Required]
         [Display(Name="Компания")]
         public string Name

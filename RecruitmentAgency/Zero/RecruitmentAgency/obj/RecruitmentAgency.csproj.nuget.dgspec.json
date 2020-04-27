@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj": {}
+    "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj": {}
   },
   "projects": {
-    "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj": {
+    "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj",
+        "projectUniqueName": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj",
         "projectName": "RecruitmentAgency",
-        "projectPath": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj",
+        "projectPath": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\RecruitmentAgency.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\obj\\",
+        "outputPath": "d:\\Work\\Новая папка\\IT-Univer\\RecruitmentAgency\\RecruitmentAgency\\Zero\\RecruitmentAgency\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

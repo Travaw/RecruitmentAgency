@@ -1,10 +1,17 @@
-﻿using RecruitmentAgency.Domain.Entities;
-using RecruitmentAgency.Domain.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
+
+using RecruitmentAgency.Domain.Entities;
+using RecruitmentAgency.Domain.Repositories;
 
 namespace RecruitmentAgency.Core.Managers.Imps
 {
+    /// <summary>
+    /// Базовый менежер
+    /// </summary>
+    /// <typeparam name="TRepository">Тип репозитория</typeparam>
+    /// <typeparam name="TEntity">Тип сущности</typeparam>
+    /// <typeparam name="TPK">Тип первичного ключа</typeparam>
     public class ManagerBase<TRepository, TEntity, TPK> : IManager<TEntity, TPK>  where TRepository : IRepository<TEntity, TPK>
                                                                                   where TEntity : class, IEntity<TPK>
     {
@@ -15,31 +22,37 @@ namespace RecruitmentAgency.Core.Managers.Imps
             this.repository = repository;
         }
 
+        /// <inheritdoc/>
         public virtual TEntity Create(TEntity user)
         {
             return repository.Save(user);
         }
 
+        /// <inheritdoc/>
         public virtual TEntity Get(TPK id)
         {
             return repository.Get(id);
         }
 
+        /// <inheritdoc/>
         public virtual TEntity Get(Func<TEntity, bool> predicate)
         {
             return repository.Get(predicate);
         }
 
+        /// <inheritdoc/>
         public virtual ICollection<TEntity> GetAll()
         {
             return repository.GetAllList();
         }
 
+        /// <inheritdoc/>
         public virtual TEntity Update(TEntity user)
         {
             return repository.Update(user);
         }
 
+        /// <inheritdoc/>
         public virtual void Delete(TPK id)
         {
             repository.Delete(id);

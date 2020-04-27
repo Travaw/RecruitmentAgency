@@ -1,10 +1,7 @@
 ﻿@model RecruitmentAgency.Web.Models.EmployeeCreateModel
 
-@{
-    ViewBag.Title = "Create";
-}
 
-
+<h2>"Введите информацию о Вашей компании"</h2>
 @using (Html.BeginForm("Create", "Employee")) 
 {
     @Html.AntiForgeryToken()

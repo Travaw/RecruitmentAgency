@@ -1,15 +1,18 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
+using RecruitmentAgency.Api.Helpers;
 using RecruitmentAgency.Api.Services.DTOs;
 using RecruitmentAgency.Core.Entities;
 using RecruitmentAgency.Core.Managers;
-using System.Linq.Expressions;
-using System;
-using RecruitmentAgency.Api.Helpers;
 
 namespace RecruitmentAgency.Api.Services.Imps
 {
+    /// <summary>
+    /// Сервис для работы с кандидатами
+    /// </summary>
     public class CandidateAppService : ICandidateAppService
     {
         private readonly ICandidateManager candidateManager;
@@ -25,6 +28,7 @@ namespace RecruitmentAgency.Api.Services.Imps
             this.mapper = mapper;
         }
 
+        ///<inheritdoc/>
         public CandidateDTO Create(CreateCandidateDTO createCandidateDTO)
         {            
             var candidate = mapper.Map<Candidate>(createCandidateDTO);
@@ -33,9 +37,10 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<CandidateDTO>(entity);
         }
 
+        ///<inheritdoc/>
         public CandidateDTO Update(UpdateCandidateDTO updateCandidateDTO)
         {
-            var candidate = candidateManager.Get(updateCandidateDTO.Id); //mapper.Map<Candidate>(updateCandidateDTO);
+            var candidate = candidateManager.Get(updateCandidateDTO.Id);
             candidate.Firstname = updateCandidateDTO.Firstname;
             candidate.Secondname = updateCandidateDTO.Secondname;
             candidate.Patronimic = updateCandidateDTO.Patronimic;
@@ -47,12 +52,14 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<CandidateDTO>(entity);
         }
 
+        ///<inheritdoc/>
         public CandidateDTO Get(int id)
         {
             var entity = candidateManager.Get(id);
             return mapper.Map<CandidateDTO>(entity);
         }
 
+        ///<inheritdoc/>
         public CandidateDTO GetByUser(int id)
         {
             var user = userManager.Get(id);
@@ -60,30 +67,34 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<CandidateDTO>(entity);
         }
 
+        ///<inheritdoc/>
         public CandidateDTO GetByUser(string login)
         {
             var entity = candidateManager.GetByUser(login);
             return mapper.Map<CandidateDTO>(entity);
         }
 
-
+        ///<inheritdoc/>
         public ICollection<CandidateDTO> Search(SearchCandidateDTO search)
         {
-            Expression<Func<Candidate, bool>> searchFunc = RequestHelper.CreateCandidateLambda(search.Experience, search.ProfessionalField, search.Skills);
+            /*Expression<Func<Candidate, bool>> searchFunc = RequestHelper.CreateCandidateLambda(search.Experience, search.ProfessionalField, search.Skills);
             if (searchFunc == null)
             {
                 return mapper.Map<ICollection<CandidateDTO>>(candidateManager.GetAll());
             }
             else
-            {
-                return mapper.Map<ICollection<CandidateDTO>>(candidateManager.Search(searchFunc.Compile()));
-            }
+            */
+            return mapper.Map<ICollection<CandidateDTO>>(candidateManager.Search(search.Experience, search.ProfessionalField, search.Skills));//searchFunc.Compile() );
+           // }
         }
+
+        ///<inheritdoc/>
         public ICollection<CandidateDTO> GetAll()
         {
             return mapper.Map<ICollection<CandidateDTO>>(candidateManager.GetAll());
         }
 
+        ///<inheritdoc/>
         public void Delete(int id)
         {
             candidateManager.Delete(id);

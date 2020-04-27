@@ -1,20 +1,24 @@
 ﻿using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
+
 using RecruitmentAgency.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RecruitmentAgency.NHibernate.Mappings
 {
+    /// <summary>
+    /// Описание структуры сущности <see cref="Employee"/>
+    /// </summary>
     public class EmployeeMap: ClassMapping<Employee>
     {
+        /// <summary>
+        ///Инициализация экземпляра <see cref="CandidateMap"/>
+        /// </summary>
         public EmployeeMap()
         {
             Id(property => property.Id, mapper =>
             {
-                mapper.Generator(Generators.Increment);
+                mapper.Generator(Generators.Native);
                 mapper.Type(NHibernateUtil.Int32);
                 mapper.Column("Id");
             });
@@ -27,11 +31,11 @@ namespace RecruitmentAgency.NHibernate.Mappings
 
             ManyToOne(property => property.User, mapping =>
             {
-                mapping.Column("UserId");
+                mapping.Column(FKColumnNames.UserFK);
                 mapping.Cascade(Cascade.All);
             });
 
-            Table("Employees");
+            Table(Employee.TableName);
         }
     }
 }

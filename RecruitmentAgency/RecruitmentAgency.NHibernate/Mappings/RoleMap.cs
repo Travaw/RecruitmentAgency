@@ -17,7 +17,7 @@ namespace RecruitmentAgency.NHibernate.Mappings
         {
             Id(property => property.Id, mapper =>
             {
-                mapper.Generator(Generators.Increment);
+                mapper.Generator(Generators.Native);
                 mapper.Type(NHibernateUtil.Int32);
                 mapper.Column("Id");
             });
@@ -33,7 +33,7 @@ namespace RecruitmentAgency.NHibernate.Mappings
                 {
                     collectionMapping.Key(keyMapping =>
                     {
-                        keyMapping.Column("RoleId");
+                        keyMapping.Column(FKColumnNames.RoleFK);
                     });
                     collectionMapping.Cascade(Cascade.All);
                 },
@@ -43,7 +43,7 @@ namespace RecruitmentAgency.NHibernate.Mappings
                 }
             );
 
-            Table("Roles");
+            Table(Role.TableName);
         }
     }
 }

@@ -1,20 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// Модель для вакансии
+    /// </summary>
     public class VacancyModel
     {
-        
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
         public int Id
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Сфера деятельности
+        /// </summary>
         [Display(Name = "Сфера деятельности")]
         public string ProfessionalField
         {
@@ -22,6 +27,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Должность
+        /// </summary>
         [Display(Name = "Должность")]
         public string Name
         {
@@ -29,6 +37,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Опыт работы
+        /// </summary>
         [Display(Name = "Опыт работы")]
         public int Experience
         {
@@ -36,6 +47,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Описание
+        /// </summary>
         [Display(Name = "Описание")]
         public string Description
         {
@@ -43,6 +57,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Требования
+        /// </summary>
         [Display(Name = "Требования")]
         public string Requierements
         {
@@ -50,6 +67,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Дата создания
+        /// </summary>
         [Display(Name = "Создана")]
         public DateTime CreationDate
         {
@@ -57,6 +77,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Срок действия
+        /// </summary>
         [Display(Name = "Действует до")]
         public DateTime Period
         {
@@ -64,6 +87,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Минимальная з/п
+        /// </summary>
         [Display(Name = "З/п от")]
         public int SalaryFrom
         {
@@ -71,6 +97,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Масмальная з/п
+        /// </summary>
         [Display(Name = "до")]
         public int SalaryTo
         {
@@ -78,13 +107,18 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
-        
+        /// <summary>
+        /// Статус (открыта/закрыта)
+        /// </summary>
         public bool IsActive
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Работодатель
+        /// </summary>
         public EmployeeModel Employee
         {
             get;

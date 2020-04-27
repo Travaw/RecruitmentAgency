@@ -5,13 +5,19 @@ using RecruitmentAgency.Core.Entities;
 
 namespace RecruitmentAgency.NHibernate.Mappings
 {
+    /// <summary>
+    /// Описание структуры сущности <see cref="Vacancy"/>
+    /// </summary>
     public class VacancyMap:ClassMapping<Vacancy>
     {
+        /// <summary>
+        /// Инициализировать экземпляр <see cref="VacancyMap"/>
+        /// </summary>
         public VacancyMap()
         {
             Id(property => property.Id, mapper =>
             {
-                mapper.Generator(Generators.Increment);
+                mapper.Generator(Generators.Native);
                 mapper.Type(NHibernateUtil.Int32);
                 mapper.Column("Id");
             });
@@ -78,11 +84,11 @@ namespace RecruitmentAgency.NHibernate.Mappings
 
             ManyToOne(property => property.Employee, mapping =>
             {
-                mapping.Column("EmployeeId");
+                mapping.Column(FKColumnNames.EmployeeFK);
                 mapping.Cascade(Cascade.All);
             });
 
-            Table("Vacancies");
+            Table(Vacancy.TableName);
         }
     }
 }

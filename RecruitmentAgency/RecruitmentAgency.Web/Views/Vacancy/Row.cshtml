@@ -1,5 +1,17 @@
 ﻿@model RecruitmentAgency.Web.Models.VacancyModel
 
+@{ 
+    var list = new List<SelectListItem>(){new SelectListItem{ Value = "true", Text = "Открыта" }, new SelectListItem{ Value = "false", Text = "Закрыта" }};
+    if (Model.IsActive)
+    {
+        list[0].Selected = true;
+    }
+    else
+    {
+        list[1].Selected = true;
+    }
+    var active = new SelectList(list, "Value", "Text");
+}
    
             <div class="row">
                 <h5 style="float:left"><a href="Vacancy/Details?id=@Model.Id">@Model.Name</a></h5>
@@ -15,22 +27,23 @@
             </div>
             <div class="row">
                 @Html.LabelFor(model => Model.Period, new { @class = "lable-control" })
-                @Html.DisplayFor(model => Model.Period, new { @class = "lable-control" })
-                
+                @Html.DisplayFor(model => Model.Period, new { @class = "lable-control" })                
             </div>
             <div class="row">
                 @if (User.IsInRole("employee") || User.IsInRole("admin"))
                 {
-                    @Html.CheckBox("Открыта", Model.IsActive, new { @class = "custom-control-input", @style = "float:left", @onclick = "switchActive(" + @Model.Id + ")" })
-                    <label>Открыта</label>
+                    @Html.DropDownList("Status", list, new {@id="activeList", @class = "form-control", @name = "status", @style = "float:left", @onchange = "setActive("+Model.Id+", this.value)" })
                 }
-                @using (Html.BeginForm("Index", "Candidate", FormMethod.Post))
+                @if (!User.IsInRole("jobseeker"))
                 {
-                    @Html.Hidden("Experience", Model.Experience)
-                    @Html.Hidden("ProfessionalField", Model.ProfessionalField)
-                    @Html.Hidden("Skills", Model.Requierements)
-                    @Html.Hidden("sortString", "-")
-                    <input type="submit" class="btn btn-default" style="float:right" value="Подобрать кандидатов" />
+                    using (Html.BeginForm("Index", "Candidate", FormMethod.Post))
+                    {
+                        @Html.Hidden("Experience", Model.Experience)
+                        @Html.Hidden("ProfessionalField", Model.ProfessionalField)
+                        @Html.Hidden("Skills", Model.Requierements)
+                        @Html.Hidden("sortString", "-")
+                        <input type="submit" class="btn btn-default" style="float:right" value="Подобрать кандидатов" />
+                    }
                 }
             </div>
 

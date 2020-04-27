@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// Модель для поиска кандидатов
+    /// </summary>
     public class CandidateSearchModel
     {
+        /// <summary>
+        /// Опыт работы
+        /// </summary>
         [Display(Name="Опыт работы")]
         public int? Experience
         {
@@ -15,6 +17,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Сфера деятельности
+        /// </summary>
         [Display(Name = "Сфера деятельности")]
         public string ProfessionalField
         {
@@ -22,6 +27,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Навыки
+        /// </summary>
         [Display(Name = "Навыки")]
         public string Skills
         {

@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
+using RecruitmentAgency.Api.Helpers;
 using RecruitmentAgency.Api.Services.DTOs;
 using RecruitmentAgency.Core.Entities;
 using RecruitmentAgency.Core.Managers;
-using System;
-using RecruitmentAgency.Api.Helpers;
-using System.Linq.Expressions;
-using System.Linq;
 
 namespace RecruitmentAgency.Api.Services.Imps
 {
+    /// <summary>
+    /// Сервис для работы с вакансиями
+    /// </summary>
     public class VacancyAppService : IVacancyAppService
     {
         private readonly IVacancyManager vacancyManager;
@@ -26,6 +28,7 @@ namespace RecruitmentAgency.Api.Services.Imps
             this.mapper = mapper;
         }
 
+        /// <inheritdoc/>
         public VacancyDTO Create(CreateVacancyDTO createVacancyDTO)
         {
             var vacancy = mapper.Map<Vacancy>(createVacancyDTO);
@@ -36,34 +39,32 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<VacancyDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public VacancyDTO Update(UpdateVacancyDTO updateVacancyDTO)
-        {/*
-            var vacancy = vacancyManager.Get(updateVacancyDTO.Id); //mapper.Map<Vacancy>(updateVacancyDTO);
-            vacancy.Description = updateVacancyDTO.Description;
-            vacancy.Requierements = updateVacancyDTO.Requierements;
-            vacancy.Description = updateVacancyDTO.Description;
-            var entity = vacancyManager.Update(user);
-            return mapper.Map<VacancyDTO>(entity);*/
+        {
             return new VacancyDTO();
         }
 
-
+        /// <inheritdoc/>
         public VacancyDTO Get(int id)
         {
             var entity = vacancyManager.Get(id);
             return mapper.Map<VacancyDTO>(entity);
         }
 
+        /// <inheritdoc/>
         public ICollection<VacancyDTO> GetAll()
         {
             return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.GetAll());
         }
 
+        /// <inheritdoc/>
         public ICollection<VacancyDTO> GetAllActive()
         {
             return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.GetAllActive());
         }
 
+        /// <inheritdoc/>
         public ICollection<VacancyDTO> GetAllForUser(string userName)
         {
             var user = employeeManager.Get(e => e.User.Login == userName);
@@ -71,24 +72,27 @@ namespace RecruitmentAgency.Api.Services.Imps
             return mapper.Map<ICollection<VacancyDTO>>(vacancies);
         }
 
+        /// <inheritdoc/>
         public ICollection<VacancyDTO> Search(SearchVacancyDTO search)
         {
-            Expression<Func<Vacancy, bool>> searchFunc = RequestHelper.CreateVacancyLambda(search.Name, search.Experience, search.ProfessionalField, search.Description,search.Requierements, search.Salary);
+            /*Expression<Func<Vacancy, bool>> searchFunc = RequestHelper.CreateVacancyLambda(search.Name, search.Experience, search.ProfessionalField, search.Description,search.Requierements, search.Salary);
             if (searchFunc == null)
             {
                 return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.GetAll());
             }
             else
-            {
-                return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.Search(searchFunc.Compile()));
-            }
+            {*/
+            return mapper.Map<ICollection<VacancyDTO>>(vacancyManager.Search(search.Name, search.Experience, search.ProfessionalField, search.Description, search.Requierements, search.Salary));///vacancyManager.Search(searchFunc.Compile()));
+            /// }
         }
 
-        public void SwitchActive(int id)
+        /// <inheritdoc/>
+        public void SetStatus(int id, bool status)
         {
-            vacancyManager.SwitchActive(id);
+            vacancyManager.SetStatus(id, status);
         }
 
+        /// <inheritdoc/>
         public void Delete(int id)
         {
             vacancyManager.Delete(id);

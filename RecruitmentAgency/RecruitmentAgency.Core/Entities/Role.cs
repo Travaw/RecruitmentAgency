@@ -1,10 +1,22 @@
-﻿using RecruitmentAgency.Domain.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using RecruitmentAgency.Domain.Entities;
 
 namespace RecruitmentAgency.Core.Entities
 {
+    /// <summary>
+    /// Роль пользователя
+    /// </summary>
     public class Role: Entity
     {
+        /// <summary>
+        /// Имя таблицы
+        /// </summary>
+        public const string TableName = "Roles";
+
+        /// <summary>
+        /// Назание роли
+        /// </summary>
         public virtual string Name
         {
             get;
@@ -12,7 +24,7 @@ namespace RecruitmentAgency.Core.Entities
         }
 
         /// <summary>
-        /// Пользователи
+        /// Принадлежащие к роли пользователи
         /// </summary>
         public virtual IEnumerable<User> Users
         {

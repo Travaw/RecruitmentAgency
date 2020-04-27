@@ -1,8 +1,15 @@
 ﻿namespace RecruitmentAgency.Domain.Entities
 {
-    public interface IEntity<IPK>
+    /// <summary>
+    /// Сущность
+    /// </summary>
+    /// <typeparam name="TPK">Тип первичного ключа</typeparam>
+    public interface IEntity<TPK>
     {
-        IPK Id 
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
+        TPK Id 
         { 
             get; 
             set; 

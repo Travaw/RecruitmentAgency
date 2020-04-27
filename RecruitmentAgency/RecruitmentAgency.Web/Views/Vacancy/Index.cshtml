@@ -4,11 +4,10 @@
 <h2>Вакансии</h2>
     <div class="table">
             <div class="row">
-                <div class="col-md-4">                   
+                <div id="search" class="col-md-4">                   
                         @Html.Partial("Search", new VacancySearchModel())                    
                 </div>
                 <div class="col-md-8" id="vacancies">
-
                     @if (User.IsInRole("employee"))
                     {
                     <div class="row">

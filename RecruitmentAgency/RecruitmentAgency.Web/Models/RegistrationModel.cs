@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecruitmentAgency.Web.Models
 {
+    /// <summary>
+    /// Модель для регистрации
+    /// </summary>
     public class RegistrationModel
     {
+        /// <summary>
+        /// Логин
+        /// </summary>
         [Required]
         public string Login
         {
@@ -15,6 +17,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Электронная почта
+        /// </summary>
         [Required]
         public string Email
         {
@@ -22,6 +27,9 @@ namespace RecruitmentAgency.Web.Models
             set;
         }
 
+        /// <summary>
+        /// Пароль
+        /// </summary>
         [Required]
         public string Password
         {

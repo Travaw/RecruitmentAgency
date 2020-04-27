@@ -1,16 +1,18 @@
-﻿@model RecruitmentAgency.Web.Models.CandidateSearchModel
+﻿@using RecruitmentAgency.Web.Strings;
+
+@model RecruitmentAgency.Web.Models.CandidateSearchModel
 
 @{
     List<object> sort = new List<object>();
-    sort.Add(new { SortString = "-" });
-    sort.Add(new { SortString = "Опыт" });
-    sort.Add(new { SortString = "Сфера деятельности" });
-    sort.Add(new { SortString = "Навыки" });
+    sort.Add(new { SortString = SortStrings.DontSort });
+    sort.Add(new { SortString = SortStrings.SortByExperience});
+    sort.Add(new { SortString = SortStrings.SortByProfessionlField});
+    sort.Add(new { SortString = SortStrings.SortBySkills});
     SelectList sortStrings = new SelectList(sort, "SortString", "SortString");
 
 }
 
-@using (Ajax.BeginForm("Index", "Candidate", new AjaxOptions { UpdateTargetId = "candidates" }, new { @class = "form-horizontal" }))
+@using (Ajax.BeginForm("Index", "Candidate", new AjaxOptions { UpdateTargetId = "search" }, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
 
