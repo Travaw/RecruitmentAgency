@@ -12,7 +12,7 @@
 
 }
 
-@using (Ajax.BeginForm("Index", "Candidate", new AjaxOptions { UpdateTargetId = "candidates" }, new { @class = "form-horizontal" }))
+@using (Ajax.BeginForm("Index", "Candidate",null, new AjaxOptions { UpdateTargetId = "candidates" }, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
 

@@ -8,7 +8,7 @@
        
     </div>
     <div class="col-md-2">
-        @using (Html.BeginForm("Index", "Vacancy", FormMethod.Post))
+        @using (Ajax.BeginForm("Index", "Vacancy", null, new AjaxOptions { UpdateTargetId = "candidates"}, new { @class = "form-horizontal" }))
         {
             @Html.Hidden("Experience", Model.Experience)
             @Html.Hidden("ProfessionalField", Model.ProfessionalField)

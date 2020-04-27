@@ -53,7 +53,7 @@ namespace RecruitmentAgency.NHibernate.Repositories
             }
             if (salary != null)
             {
-                request = request.Where(v => v.SalaryFrom < salary&&v.SalaryTo > salary);
+                request = request.Where(v => v.SalaryFrom <= salary&&v.SalaryTo >= salary);
             }
             return request.ToList();
         }

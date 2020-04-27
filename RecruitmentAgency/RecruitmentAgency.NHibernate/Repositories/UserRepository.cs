@@ -1,6 +1,8 @@
 ﻿using NHibernate;
 using RecruitmentAgency.Core.Entities;
 using RecruitmentAgency.Core.Repositories;
+using System;
+using System.Linq;
 
 namespace RecruitmentAgency.NHibernate.Repositories
 {
@@ -12,6 +14,13 @@ namespace RecruitmentAgency.NHibernate.Repositories
         public UserRepository(ISession session) : base(session)
         {
 
+        }       
+
+        /// <inheritdoc/>
+        public override IQueryable<User> GetAll()
+        {
+            return session.Query<User>().Select(r=> new User() { Id = r.Id, Login=r.Login});
         }
+
     }
 }

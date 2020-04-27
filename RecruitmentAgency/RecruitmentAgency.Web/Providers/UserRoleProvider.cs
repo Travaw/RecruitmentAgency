@@ -61,7 +61,6 @@ namespace RecruitmentAgency.Web.Providers
         /// <inheritdoc/>
         public override string[] GetRolesForUser(string username)
         {
-
             UserDTO user = userService.Get(username);
             string role = user.Role.Name;
             return new string[] { role };

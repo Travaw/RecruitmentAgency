@@ -10,7 +10,7 @@ namespace RecruitmentAgency.Api.Services.DTOs
         /// <summary>
         /// Опыт работы
         /// </summary>
-        public int Experience //переделать на список мест работы
+        public int? Experience //переделать на список мест работы
         {
             get;
             set;
